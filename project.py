@@ -1,17 +1,23 @@
+# Imports the time, math, random module and the playsound package
 import time
 import math
 import random
 from playsound import playsound 
-# ideas: add emojis, bold words and make titles bigger with ascii (welcome screen finish screen), make user WAIT for the wait times, name input
-section = "A" # add quotations to encourage the user on the ladder and an animation at the end of jabari jumping off. "You got this, keep on climbing!", maybe add final booster when they jump off to perform moves, add wait times
-correctSound = ["correctAnswer1.mp3", "correctAnswer2.mp3", "correctAnswer3.wav", "correctAnswer4.wav"]
-incorrectSound = ["wrongAnswer1.wav", "wrongAnswer2.wav", "wrongAnswer3.wav", "wrongAnswer4.wav"]
-splashSound = ["splash1.wav", "splash2.wav", "splash3.wav"]
 
+# I was going to use the sys module to resize the terminal, but I will just add in the README.md to play in fullscreen mode
+#import sys
+#sys.stdout.write("\x1b[8;{rows};{cols}t".format(rows=200, cols=350))
+
+section = "A" 
+
+# List randomizers for all the different correct, incorrect and splash audio files
+correctSound = ["Audio/correctAnswer1.mp3", "Audio/correctAnswer2.mp3", "Audio/correctAnswer3.wav", "Audio/correctAnswer4.wav"]
+incorrectSound = ["Audio/wrongAnswer1.wav", "Audio/wrongAnswer2.wav", "Audio/wrongAnswer3.wav", "Audio/wrongAnswer4.wav"]
+splashSound = ["Audio/splash1.wav", "Audio/splash2.wav", "Audio/splash3.wav"]
+
+# Welcome Screen
 def welcomeScreen():
-    # Welcome Screen
-
-    # Y9 Design
+    # Y9 Design - Welcome Screen Part 1
     print("""\033[1m
          __      __ ______         _______                    __                   
         /  \    /  /      \       /       \                  /  |                  
@@ -26,15 +32,16 @@ def welcomeScreen():
                                                                 $$    $$/          
                                                                 $$$$$$/           
     """) 
-   
+
     time.sleep(3)
+    # Barrier to split in between different print commands to make it look more organized and simple
     print ("\033[31m\n| ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ |")
     print ("| ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ |")
     print ("| ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ |\n")
     print("\033[0m")
     time.sleep(3)
 
-    # Welcome to Jabari Jumps
+    # Welcome to Jabari Jumps - Welcome Screen Part 2
     print("""\033[1m
                  __        __   _                            _                     
                  \ \      / ___| | ___ ___  _ __ ___   ___  | |_ ___               
@@ -49,13 +56,14 @@ def welcomeScreen():
                                                                    |_| 
     """)
 
-    time.sleep(3)
+    time.sleep(3) # Wait 3 seconds
     print ("\033[31m\n| ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ |")
     print ("| ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ |")
     print ("| ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ |\n")
-    print("\033[0m")
+    print("\033[0m") # Wait 3 seconds
     time.sleep(3)
 
+# Transition screen between sections
 def transitionScreen(): 
     print("""   \033[1m                                                                 
      .                                                                     
@@ -90,16 +98,16 @@ def transitionScreen():
                                 . ..    ...    
 \033[0m                            
 """)
-    playsound(random.choice(splashSound))
+    playsound(random.choice(splashSound)) # Plays random splash sound ... etc
 
-def sectionAInfo(): # add information about the user waiting for the waiting times for "your answer"
-    # Instructions
+# Game Instructions & Information about Section A
+def sectionAInfo(): 
     global section
     print("\033[1mWelcome to Jabari Jumps Text-Based Game! \033[0m\nThis game will fun and engaging while testing your knowledge on Jabari Jumps!")
     print("\033[2m\nBy: Zeen Liu.\n\033[0m")
     time.sleep(3)
     print("\033[1mInstructions:\033[0m")
-    print("    * Prerequisites - Only keyboard is needed, mouse is optional, played in IDLE.")
+    print("    * Prerequisites - Found in 'README.md', Make sure you've read it!")
     print("    * Section A - Basic Comprehension.")
     print("    * Section B - Reflective Questions.")
     print("    * Section C - Vocabulary Review.")
@@ -108,13 +116,13 @@ def sectionAInfo(): # add information about the user waiting for the waiting tim
     print("    * There are wait times during the code, so don't type in anything before it tells you that you can.")
     print("    * If you enter something before the wait time is over, you risk crashing the game. ")
     print("    * Also, accurate is spelling is important. Sometimes if you miss a letter in a word, the filter will count it as incorrect.")
-    time.sleep(8)
+    time.sleep(14)
     print("\nSection A will only be Multiple-Choice questions.")
     print("It is your only chance to earn coins and spend it on hints & boosters later, so make sure to think about the questions carefully!")
     time.sleep(4)
     print("\033[1m\nReward System: \033[0m") 
     print("    * 1 coin for each first-try correct answer.")
-    print("    * No coins deducted from wrong answer.")
+    print("    * No coins deducted for wrong answer.")
     time.sleep(4) # Wait 10 seconds
     section = "A"
     startConfirmation()
@@ -125,7 +133,7 @@ def startConfirmation():
     while gameStart == False:
         start = input("\033[1m\nType in 'ok' when you've read through all the instructions.\n\033[0m")
         if start.lower() == "ok":
-            print("\nAlright, let's proceed to Section " + section + ".\n")
+            print("\033[2m\nAlright, let's proceed to Section " + section + ".\n\033[0m")
             gameStart = True
             time.sleep(3)
             transitionScreen()
@@ -133,7 +141,7 @@ def startConfirmation():
         else:
             print("Not ready? You got this! Try again.")
 
-# Section A 
+# Section A Data Set
 dataA = {
     "questions": [
         "Question 1: Based on the title page, what do you think this story is about?",
@@ -176,52 +184,52 @@ dataA = {
         ]
 }
 
-def sectionA(): #instead of just "your answwer" add a message for when it is wrong, make it clear to the user when they receive a coin and if they get the question first try
+# Section A - Comprehension Questions
+def sectionA(): 
     global coins
     coins = 0
     time.sleep(3)
-    print ("\033[31m\n| ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ |")
+    print ("\033[31m\033[1m\n| ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ |")
     print ("| ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ |")
     print ("| ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ |\n")
     print("\033[0m")
     time.sleep(3)
     for question in range(len(dataA["questions"])):
-        print("\033[1m\n" + dataA["questions"][question]+"\n\033[0m")
-        time.sleep(3) # wait 3 seconds
-        for multipleChoice in dataA["answers"][question]:
+        print("\033[1m\n" + dataA["questions"][question]+"\n\033[0m") # Displays the question
+        time.sleep(3)
+        for multipleChoice in dataA["answers"][question]: # Displays the multiple choice options
             print(multipleChoice)
             correct = False
             firstTry = True
         while correct == False: 
-            userAnswer = input("\033[1m\nYour answer: \033[0m")
+            userAnswer = input("\033[1m\nYour answer: \033[0m") # Asks the user for their answer
             if type(dataA["answer"][question]) is str:
-                if userAnswer.lower() == dataA["answer"][question]:
+                if userAnswer.lower() == dataA["answer"][question]: # Checks if the answer is right
                     print("Congrats! This is the right answer. ")
                     correct = True
-                    if firstTry == True:
+                    if firstTry == True: # Gives the user 1 coin if they get it first try
                         coins += 1
                         print("You gain 1 coin for getting it first try! ")
                     else:
                         coins += 0
-                    playsound(random.choice(correctSound))
-            elif type(dataA["answer"][question]) is list:
+                    playsound(random.choice(correctSound)) # Plays random correct sound ... etc
+            elif type(dataA["answer"][question]) is list: # Checks if the answer is right
                 if userAnswer.lower() in dataA["answer"][question]:
-                    print("\nCongrats! This is the right answer. ")
+                    print("Congrats! This is the right answer. ")
                     correct = True
-                    if firstTry == True:
+                    if firstTry == True: # Gives the user 1 coin if they get it first try
                         coins += 1
                         print("You gain 1 coin for getting it first try! ")
                     else:
                         coins += 0
                     playsound(random.choice(correctSound))
-            if userAnswer.lower() != dataA["answer"][question]:
-                print("Please try again.")
-                playsound(random.choice(incorrectSound))
-            firstTry = False
+                else:
+                    print("Please try again.")
+                    playsound(random.choice(incorrectSound)) # Plays random incorrect sound ... etc
+                    firstTry = False
         print(f'\033[2m\n  * Coin Balance: {coins} \n\033[0m')
 
-# Section B
-
+# Information about Section B
 def sectionBInfo():
     global section
     print("\033[1mNow, we will be moving onto Section B.\n\033[0m")
@@ -238,6 +246,7 @@ def sectionBInfo():
     section = "B"
     startConfirmation()
 
+# Section B Data Set: Questions, Answers, Correct Answer, Question Type
 dataB = {
     "questions": [
         "As you read through the story, you probably noticed that even though Jabari seemed to be excited at first to dive, when it was actually his turn, he seemed very nervous.",
@@ -252,12 +261,12 @@ dataB = {
         "Both are correct! Jabari might still be scared but will definitely be less scared but will definitely be less scared than his first experience because he learned from the challenge and this increased his ability to control his fear of diving. This is called a 'Growth Mindset'.",
         "8. Reflect back. Why do you think a 'Growth Mindset' is important to overcome fears?",
         "9. Conclusion: Apply the knowledge of a growth mindset and first experiences. Explain how they can help you overcome your fears in the future.",
-        "Now, let's focus on the bigger picture - United Nations Sustainability Development Goals (UNSDG). These are the foundation to build a better society. \nDo you think every child can be like Jabari and have a swimming pool to dive in?",
+        "10. Now, let's focus on the bigger picture - United Nations Sustainability Development Goals (UNSDG). These are the foundation to build a better society. \nDo you think every child can be like Jabari and have a swimming pool to dive in?",
         "Excellent thinking! Unfortunately, not every city in the world can afford good infrastructure - the foundation and the structure of our city. An example of infrastructure would be public pools.",
-        "10. Which of these do you think is part of a city's infrastructure?",
-        "They are all correct! \n11. Why do you think infrastructure is important for a city?",
-        "11. Now think about how much water a pool needs to function. Do you think all cities can afford these public pools?",
-        "12. Why do you think some cities or countries don't have enough water?",
+        "11. Which of these do you think is part of a city's infrastructure?",
+        "12. Why do you think infrastructure is important for a city?",
+        "13. Now think about how much water a pool needs to function. Do you think all cities can afford these public pools?",
+        "14. Why do you think some cities or countries don't have enough water?",
         "Exceptional thinking! While some cities have the money for pools, they might not have nearly enough water to sustain it."
         ],
     "answers": [
@@ -284,30 +293,33 @@ dataB = {
     "answer": [
         "", "b", "", "", "", "", "", "", ["a","b"], "", "", "", "a", "", ["a", "b", "c"], "", "b", "", ""
         ],
-    "type": [
+    "type": [ # 'mc' = multiple choice, 'sa' = short answer, 'is' = info slide
         "is", "mc", "is", "sa", "sa", "sa", "sa", "sa", "mc", "is", "sa", "sa", "mc", "is", "mc", "sa", "mc", "sa", "is"
     ]   
-} #mc (multiple choice), sa (short answer), is (info slide)
+} 
 
-def sectionB(): # fix the congrats this is the right answer screen
+# Section B - Reflective Questions
+def sectionB():
     global questionsB
     global answersB
-    coins = 16 # remove ltr
     questionsB = []
     answersB = []
-    print ("\033[31m\n| ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ |")
+    print ("\033[31m\033[1m\n| ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ |")
     print ("| ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ |")
     print ("| ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ |\n")
     print("\033[0m")
+    time.sleep(3)
     for question in range(len(dataB["questions"])):
-        if dataB["type"][question] == "mc":
+        if dataB["type"][question] == "mc": # Checks if question is multiple choice
             print("\033[1m\n" + dataB["questions"][question]+"\n\033[0m")
             time.sleep(2)
-            for multipleChoice in dataB["answers"][question]:
+            for multipleChoice in dataB["answers"][question]: # Prints multiple choice options
                 print(multipleChoice)
             correct = False
             while correct == False: 
-                userAnswer = input("\033[1m\nYour answer: \033[0m")
+                # Asks user for their answer and checks if it is correct
+                # Will loop if the user gives an invalid answer
+                userAnswer = input("\033[1m\nYour answer: \033[0m") 
                 if type(dataB["answer"][question]) is str:
                     if userAnswer.lower() == dataB["answer"][question]:
                         print("Congrats! This is the right answer. ")
@@ -315,6 +327,7 @@ def sectionB(): # fix the congrats this is the right answer screen
                         correct = True
                     else: 
                         print("Please try again.")
+                        playsound(random.choice(incorrectSound))
                 elif type(dataB["answer"][question]) is list:
                     if userAnswer.lower() in dataB["answer"][question]:
                         print("Congrats! This is the right answer. ")
@@ -323,49 +336,61 @@ def sectionB(): # fix the congrats this is the right answer screen
                     else: 
                         print("Please try again.")
                         playsound(random.choice(incorrectSound))
-        elif dataB["type"][question] == "sa":
+        elif dataB["type"][question] == "sa": # Checks if the question is short answer
             time.sleep(2)
-            shortAnswer = input("\n" + dataB["questions"][question]+"\033[1m\n\nYour answer: \033[0m")
+            shortAnswer = input("\033[1m\n" + dataB["questions"][question]+"\033[0m\033[1m\n\nYour answer: \033[0m") # Asks user for their answer
+            # Saves the user's answer
             questionsB.append(dataB["questions"][question])
             answersB.append(shortAnswer)
             print("\nAnswer submitted!\n")
             playsound(random.choice(splashSound))
-        elif dataB["type"][question] == "is":
+        elif dataB["type"][question] == "is": # Checks if the question is info slide
             time.sleep(2)
             print("\033[2m\033[1m\n" + dataB["questions"][question]+"\n\033[0m")
             time.sleep(5)
     print(f'\033[2m\n  * Coin Balance: {coins} \n\033[0m')
     time.sleep(5)
 
+# Information about Section C
 def sectionCInfo():
     global section
-    print("Now, we will be moving onto Section C.")
-    print("    * Section C will be a vocabulary test to see what you've learned today!")
-    print("    * This will be the last section, you will have to write a correct meaning in your own words for each of words in the randomized list.")
-    print("    * You can use your hard-earned coins to spend it on hints.")
-    print("        * 3 coins = 1 hint.")
-    print("        * If you wish to use a hint for a word, simply type in 'hint' when typing your answer.")
-    print("    * After you enter your answer, a system checks whether you have written the important keywords.")
-    print("    * The more keywords you write in your answer, the higher you climb on the ladder.")
-    print("    * The height is also affected by perks that you can buy with coins each turn.")
-    print("        * Hint Perk:")
+    print("\033[1m\nNow, we will be moving onto Section C.\n\033[0m")
+    time.sleep(2)
+    print("    * This section will be a vocabulary test to see what you've learned today!")
+    print("    * You will have to write a correct meaning in your own words for each of words in the randomized list.")
+    time.sleep(4)
+    print("\033[1m\nOn each question can use your hard-earned coins to spend it on hints.\n\033[0m")
+    print("    * 3 coins = 1 hint.")
+    print("    * If you wish to use a hint for a word, simply type 'hint' in the answer prompt.\n")
+    time.sleep(4)
+    print("After you enter your answer, a system checks whether you have written the important keywords.")
+    print("The more keywords that match in your answer, the higher you climb on the ladder.")
+    print("When writing your answer, DO NOT use commas, because it will break the filter.")
+    time.sleep(4)
+    print("            \033[1m\n* The height is also affected by perks that you can buy with coins each turn.\033[0m\n")
+    time.sleep(2)
+    print("        \033[1m* Hint Perk:\033[0m")
     print("            * Cost - 1")
     print("            * Max Level - 3")
     print("            * Description - It costs less to purchase a hint and they deduct less height.")
-    print("        * Time Perk:")
+    time.sleep(2)
+    print("\033[1m\n        * Time Perk:\033[0m")
     print("            * Cost - 2")
     print("            * Max Level - 5")
     print("            * Description - Streaks of correct keywords give more height.")
-    print("        * Streak Perk:")
+    time.sleep(2)
+    print("\033[1m\n        * Streak Perk:\033[0m")
     print("            * Cost - 2")
     print("            * Max Level - 5")
     print("            * Description - Longer time to answer a question deducts less height.")
-    print("    * In the end, the total height that you have climbed will be your final performance score.")
-    time.sleep(10)
+    time.sleep(2)
+    print("\033[1m\nIn the end, the total height that you have climbed will influence your performance score.\033[0m\n")
+    time.sleep(4)
     section = "C"
     startConfirmation()
 
-dataC = {
+# Section C Data Set: Words, Hints, Keywords
+dataC = { 
     "words": [
         "Growth Mindset", 
         "Infrastructure",
@@ -394,11 +419,12 @@ dataC = {
         ["united", "nations", "sustainability", "development", "goals", "better", "society", "build", "building", "foundation", "structure", "infrastrcture", "develop", "sustain"],
         ["building", "tower", "stable", "base", "sustain", "build", "structure", "hold", "strong"],
         ["sustain", "maintain", "sustained", "maintained", "life", "cycle", "food", "species", "same", "long", "time", "example", "plant", "plants", "animal", "animals"],
-        ["growth", "grow", "evolve", "evolution", "developing", "process", "technology", "modern", "society", "change", "changing"]
+        ["growth", "grow", "evolve", "evolution", "develop", "developing", "process", "technology", "modern", "society", "change", "changing", "improve", "improving"]
     ]   
 }
 
-def sectionC(): #add the option to buy boosters on every turn, add more info on each booster, add a limit, 
+# Section C - Vocab
+def sectionC(): 
     global coins
     global hintUse
     global questionsC
@@ -409,107 +435,123 @@ def sectionC(): #add the option to buy boosters on every turn, add more info on 
     answersC = []
     hintUse = 0
     totalHeight = 0
-    coins = 16 # remove ltr
     boosterList = [0, 0, 0]
     originalList = [1, 2, 3, 4, 5, 6, 7, 8]
     randomList = []
-    for rep in range(len(originalList)): 
+    print ("\033[31m\033[1m\n| ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ |")
+    print ("| ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ |")
+    print ("| ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ |\n")
+    print("\033[0m")
+    time.sleep(3)
+
+    for rep in range(len(originalList)): # Randomizes the vocab word order so that it is unique every time
         randomNumber = random.choice(originalList)
         originalList.remove(randomNumber)
         randomList.append(randomNumber)
+
     questionNumber = 0
     for vocab in randomList:
+        questionNumber += 1
         loop = False
+
+        # Asks the user whether they want to buy any booster before they start the question
         while loop == False:
-            booster = input("\nEnter 0 to pass\nEnter 1 to upgrade Hint Perk (1 coin)\nEnter 2 to upgrade Time Perk (2 coins)\nEnter 3 to upgrade Streak Perk (2 coins)\n\n")
+            booster = input(f"\033[1m\033[4m\nBuy Boosters Before Question {questionNumber}!\033[0m\n\nEnter 0 to pass\nEnter 1 to upgrade Hint Perk (1 coin)\nEnter 2 to upgrade Time Perk (2 coins)\nEnter 3 to upgrade Streak Perk (2 coins)\n\n")
             if booster == '1':
-                if coins-1 < 0:
+                if coins-1 < 0: # Checks if the user has enough coins
                     print("Not enough coins!")
-                    playsound("invalidPurchase.wav")
-                elif boosterList[0] == 3:
-                    print("Hint perk is already max level (3/3)!")
-                    playsound("invalidPurchase.wav")
+                    playsound("Audio/invalidPurchase.wav") # Invalid purchase sound... etc
+                elif boosterList[0] == 3: # Checks if the user already has the max level perk
+                    print("Hint perk is already max level (3/3)!") 
+                    playsound("Audio/invalidPurchase.wav")
                 else:
                     boosterList[0] += 1
                     loop = True
                     print(f"\nHint Perk Level {boosterList[0]}/3 Purchased!\n")
-                    playsound("coinPurchase.wav")
-                    print("    * Coin Balance: " + str(coins) + " - " + str(1) + " (Hint Perk) = " + str(coins-1) + " coins.")
+                    playsound("Audio/coinPurchase.wav") # Coin purchase sound... etc
+                    print("\033[2m    * Coin Balance: " + str(coins) + " - " + str(1) + " (Hint Perk) = " + str(coins-1) + " coins.\033[0m")
                     coins -= 1
             elif booster == '2':
-                if coins-2 < 0:
-                    print("Not enough coins!")
-                    playsound("invalidPurchase.wav")
-                elif boosterList[1] == 5:
-                    print("Time perk is already max level (5/5)!")
-                    playsound("invalidPurchase.wav")
+                if coins-2 < 0: # Checks if the user has enough coins
+                    print("Not enough coins!") 
+                    playsound("Audio/invalidPurchase.wav")
+                elif boosterList[1] == 5: # Checks if the user already has the max level perk
+                    print("Time perk is already max level (5/5)!") 
+                    playsound("Audio/invalidPurchase.wav")
                 else:
                     boosterList[1] += 1
                     loop = True
                     print(f"\nTime Perk Level {boosterList[1]}/5 Purchased!\n")
-                    playsound("coinPurchase.wav")
-                    print("    * Coin Balance: " + str(coins) + " - " + str(2) + " (Time Perk) = " + str(coins-2) + " coins.")
+                    playsound("Audio/coinPurchase.wav")
+                    print("\033[2m    * Coin Balance: " + str(coins) + " - " + str(2) + " (Time Perk) = " + str(coins-2) + " coins.\033[0m")
                     coins -= 2
             elif booster == '3':
-                if coins-2 < 0:
+                if coins-2 < 0: # Checks if the user has enough coins
                     print("Not enough coins!")
-                    playsound("invalidPurchase.wav")
+                    playsound("Audio/invalidPurchase.wav")
                 elif boosterList[2] == 5:
-                    print("Streak perk is already max level (5/5)!")
-                    playsound("invalidPurchase.wav")
+                    print("Streak perk is already max level (5/5)!") # Checks if the user already has the max level perk
+                    playsound("Audio/invalidPurchase.wav")
                 else:
                     boosterList[2] += 1
                     loop = True
                     print(f"\nStreak Perk Level {boosterList[2]}/5 Purchased!\n")
-                    playsound("coinPurchase.wav")
-                    print("    * Coin Balance: " + str(coins) + " - " + str(2) + " (Streak Perk) = " + str(coins-2) + " coins")
+                    playsound("Audio/coinPurchase.wav")
+                    print("\033[2m    * Coin Balance: " + str(coins) + " - " + str(2) + " (Streak Perk) = " + str(coins-2) + " coins\033[0m")
                     coins -= 2
             elif booster == '0':
                 time.sleep(1)
-                print(f"\nProceeding to Question {questionNumber+1} ...\n")
+                print(f"\033[2m\nProceeding to Question {questionNumber} ...\n\033[0m")
                 loop = True 
-            else:
+            else: # Checks if the user inputs a valid option
                 print("Please choose a valid option!\n")
-                playsound("invalidPurchase.wav")
+                playsound("Audio/invalidPurchase.wav")
         time.sleep(3)
-        questionNumber += 1
-        hintCost = hintsBooster(boosterList[0])
+
+        hintCost = hintsBooster(boosterList[0]) # Sets the hint cost based on the new perks in action
         hintUsed = False
         timeStart = time.time()
-        answer = input("\n" + str(questionNumber) + ". What is " + dataC["words"][vocab-1] + ": \n\n")
-        if answer.lower() == 'hint':
-            if coins-hintCost < 0:
-                print("\nNot enough coins!")
-                playsound("invalidPurchase.wav")
-                answer = input("\n" + str(questionNumber) + ". What is " + dataC["words"][vocab-1] + ": \n\n")  
+
+        # Asks the user for their answer to the vocabulary question
+        answer = input("\033[1m\n" + str(questionNumber) + ". What is " + dataC["words"][vocab-1] + ": \n\n\033[0m\033[1mYour answer: \033[0m")
+        if answer.lower() == 'hint': # Checks if the user wants to purchase a hint
+            if coins-hintCost < 0: # Checks if the user has enough coins
+                print("\nNot enough coins!\n")
+                playsound("Audio/invalidPurchase.wav")
+                answer = input("\n" + str(questionNumber) + ". What is " + dataC["words"][vocab-1] + ": \n\n\033[1mYour answer: \033[0m")  
             else:
                 hintUsed = True
-                print("Hint purchased!\n")
-                playsound("coinPurchase.wav")
-                print("    * Coin Balance: " + str(coins) + " - " + str(hintCost) + " (hint) = " + str(coins-hintCost) + " coins")
-                answer = input("\n" + dataC["hint"][vocab-1] + "\n\n")
+                print("\nHint purchased!\n")
+                playsound("Audio/coinPurchase.wav")
+                print("\033[2m    * Coin Balance: " + str(coins) + " - " + str(hintCost) + " (hint) = " + str(coins-hintCost) + " coins\033[0m")
+                answer = input("\033[1m\n" + dataC["hint"][vocab-1] + "\033[0m\n\n\033[1mYour answer: \033[0m")
                 hintUse += 1
                 coins -= hintCost
         print("\nAnswer Submitted!\n")
-        print(f'    * Coin Balance: {coins}')
         playsound(random.choice(splashSound))
+        print(f'\033[2m    * Coin Balance: {coins}\033[0m')
             
         timeEnd = time.time()
-        answersC.append(answer)
+        answersC.append(answer) # Saves the user's answer
         timeTotal = int(timeEnd - timeStart)
 
+        # Keyword filter, checks if it matches with the keywords in 'DataC' dataset
         answerList = answer.split()
         correctList = []
         for word in answerList:
             if word.lower() in dataC["keywords"][vocab-1]:
                 correctList.append(word.lower())
 
+        # Keyword streak calculation into initial height gain
+        initialGain = 100 + len(correctList) * (boosterList[2]+1)*5 
 
-        initialGain = 100 + len(correctList) * boosterList[2]*5 
+        # Height calculation
         height = pointCalculation(boosterList, initialGain, timeTotal, hintUsed)
         totalHeight = totalHeight + height
+
+        # Displays the ladder with the user's current height, adjusted with if statements for 2-3-4 digits in height.
         if totalHeight < 100: 
-            print(f"""
+            print(f"""\033[1m\033[34m
                 █          █
         Height  ████████████
                 █          █
@@ -521,7 +563,7 @@ def sectionC(): #add the option to buy boosters on every turn, add more info on 
                 █          █
 """)
         elif totalHeight >= 100 and totalHeight*2 <= 999:
-            print(f"""
+            print(f"""\033[1m\033[34m
                 █          █
         Height  ████████████
                 █          █
@@ -530,10 +572,10 @@ def sectionC(): #add the option to buy boosters on every turn, add more info on 
         {int(totalHeight*1.5)}     ████████████
                 █          █
     {">>> "}{int(totalHeight)}     ████████████
-                █          █
+                █          █\033[0m
 """)
         elif totalHeight*2 > 999 and totalHeight*1.5 < 999:
-            print(f"""
+            print(f"""\033[1m\033[34m
                 █          █
         Height  ████████████
                 █          █
@@ -542,10 +584,10 @@ def sectionC(): #add the option to buy boosters on every turn, add more info on 
         {int(totalHeight*1.5)}     ████████████
                 █          █
     {">>> "}{int(totalHeight)}     ████████████
-                █          █
+                █          █\033[0m
 """)
         elif totalHeight*1.5 > 999 and totalHeight < 999:
-            print(f"""
+            print(f"""\033[1m\033[34m
                 █          █
         Height  ████████████
                 █          █
@@ -554,10 +596,10 @@ def sectionC(): #add the option to buy boosters on every turn, add more info on 
         {int(totalHeight*1.5)}    ████████████
                 █          █
     {">>> "}{int(totalHeight)}     ████████████
-                █          █
+                █          █\033[0m
 """)
         elif totalHeight > 999:
-            print(f"""
+            print(f"""\033[1m\033[34m
                 █          █
         Height  ████████████
                 █          █
@@ -566,38 +608,62 @@ def sectionC(): #add the option to buy boosters on every turn, add more info on 
         {int(totalHeight*1.5)}    ████████████
                 █          █
     {">>> "}{int(totalHeight)}    ████████████
-                █          █
+                █          █\033[0m
         """)
 
-        playsound("ladder.mp3")
+        playsound("Audio/ladder.mp3") # Ladder climbing sound
 
-        print("\nYou got " + str(len(correctList)) + " keywords!\n") # add emoji, 
+        # Displays how many keywords the user got right, and prints what they are
+        print("\033[0m\033[1m\nYou got " + str(len(correctList)) + " keywords!\n\033[0m")
         for keywords in correctList:
-            print(f"    - {keywords.capitalize()}")       
+            print(f"    - {keywords.capitalize()}")      
 
-        print ("\033[31m\n| ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ |")
-        print ("| ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ |")
-        print ("| ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ |\n")
-        print("\033[0m")
-
+        # Saves the vocabulary question 
         questionsC.append(str(questionNumber) + ". What is " + dataC["words"][vocab-1] + "?")
         time.sleep(2)
+    
+    print ("\033[31m\033[1m\n| ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ |")
+    print ("| ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ |")
+    print ("| ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ |\n")
+    print("\033[0m")
 
-def pointCalculation(boosterList, initialGain, totalTime, hintUsed):
-    if hintUsed == False:
+    # Ending dialogue of Section C, as you jump down the ladder
+    print("You look down.")
+    time.sleep(2)
+    print("...")
+    time.sleep(2)
+    print("Wow! You have come a long way up the ladder.")
+    time.sleep(4)
+    print("\033[1m\nYou get ready to take another dive off the board.")
+    time.sleep(2)
+    print("...")
+    time.sleep(2)
+    print("\n...")
+    time.sleep(2)
+    print("\nSSSSSSSSPLAAAAAAASHHHHH!\033[0m")
+    playsound(random.choice(splashSound))
+    multiplierList = [1, 1.05, 1.1, 1.15, 1.2]
+    totalHeight = int(totalHeight*(random.choice(multiplierList)))
+    time.sleep(4)
+
+def pointCalculation(boosterList, initialGain, totalTime, hintUsed): 
+    # The main function to calculate the "height" of a user's answer in Section C
+    # Time, hints used and keyword streaks are key factors here
+    # Basically, aside from the math, the higher perk level the user has purchased, the bigger effect it will have on the final "height"
+    if hintUsed == False: # Calculates the hint multiplier deduction
         hintMultiplier = 1
     else:
         hintMultiplier = 0.8 + boosterList[0]*0.05
-    timeIntervals60 = math.floor(totalTime/30)
-    timeMultiplier = 1 - timeIntervals60*(0.05-0.01*boosterList[1])
-    totalMultiplier = initialGain * hintMultiplier * timeMultiplier
+    timeIntervals30 = math.floor(totalTime/30) # Calculates the time multiplier based on how many intervals of 30 seconds the user took to complete their answer
+    timeMultiplier = 1 - timeIntervals30*(0.05-0.01*boosterList[1]) 
+    totalMultiplier = initialGain * hintMultiplier * timeMultiplier # Calculates the total multiplier
     return totalMultiplier
 
-def hintsBooster(level:int):
+def hintsBooster(level:int): # Decides how much a hint would cost, based on the Hint Perk level
     hintCost = 5 - level
     return hintCost
    
-def timeConvert(sec):
+def timeConvert(sec): # Converts seconds into a properly formatted clock [x mins y secs]
     if sec < 60:
         elapsedTime = str(str(sec) + " seconds")
         return elapsedTime
@@ -608,55 +674,20 @@ def timeConvert(sec):
         elapsedTime = str(mins) + " minutes " + str(sec) + " seconds "
         return elapsedTime
 
-# Core Game Functions
-
-gameStart = time.time()
-# welcomeScreen()
-# sectionAInfo()
-sectionAStart = time.time()
-# sectionA()
-sectionAEnd = time.time()
-# totalCoins = coins
-totalCoins = 16
-# sectionBInfo()
-sectionBStart = time.time()
-# sectionB()
-sectionBEnd = time.time()
-sectionCInfo()
-sectionCStart = time.time()
-sectionC()
-sectionCEnd = time.time()
-gameEnd = time.time()
-
-def gameFinish():
-    # Conclusion & Summary of Text-Based Game
+def gameFinish(): # Conclusion & Summary of Text-Based Game
     time.sleep(3)
     transitionScreen()
     time.sleep(3)
     print("")
-    print(""""
+    print("""\033[1m\033[32m\n
 ╔═╗┌─┐┌┐┌┌─┐┬─┐┌─┐┌┬┐┬ ┬┬  ┌─┐┌┬┐┬┌─┐┌┐┌┌─┐┬
 ║  │ │││││ ┬├┬┘├─┤ │ │ ││  ├─┤ │ ││ ││││└─┐│
-╚═╝└─┘┘└┘└─┘┴└─┴ ┴ ┴ └─┘┴─┘┴ ┴ ┴ ┴└─┘┘└┘└─┘o\n
+╚═╝└─┘┘└┘└─┘┴└─┴ ┴ ┴ └─┘┴─┘┴ ┴ ┴ ┴└─┘┘└┘└─┘o\033[0m
 """)
+    
     time.sleep(3)
 
-    # Sends a congrats message for the user finishing the game, and the tone varies depending on how good/bad the user did.
-    if totalCoins == 0:
-        print("Hmm, are you typing in random things?")
-        playsound("kiddingRight0.mp3")
-    elif totalCoins >= 1 and totalCoins <= 4:
-        print("Nice try, you'll do better next time!")
-        playsound("huh1-4.mp3")
-    elif totalCoins >= 5 and totalCoins <= 8:
-        print("Keep up the good effort, keep on trying!")
-        playsound("singingLaughing5-8.mp3")
-    elif totalCoins >= 9 and totalCoins <= 12:
-        print("Keep up the great work, you read the book very well!")
-        playsound("winShow9-12.mp3")
-    elif totalCoins >= 13 and totalCoins <= 16:
-        print("Excellent job, you really impressed me!")
-        playsound("applause13-16.mp3")
+    print(f"\033[1m\033[4mYour Final Performance Score: {totalHeight}!\n\033[0m")
 
     # Time Calculation of Individual Sections
     gameElapsed = gameEnd - gameStart
@@ -677,28 +708,47 @@ def gameFinish():
 
     time.sleep(3)
 
+    # Gives the score of Section A out of 16 & in percentage
     percentage = int(totalCoins/16*100)
-    print("\nYour Comprehension Score ......")
-    playsound("drumroll1.mp3")
-    print("Section A: " + str(totalCoins) + "/16 -- " + str(percentage) + "%!\n")
-    playsound("drumroll2.mp3")
+    print("\033[1m\nYour Comprehension Score ......")
+    playsound("Audio/drumroll1.mp3") # Drumroll
+    print("Section A: \033[0m" + str(totalCoins) + "/16 -- " + str(percentage) + "%!")
+    playsound("Audio/drumroll2.mp3")
 
+    # Sends a congrats message for the user finishing the game, and the tone/sound effect varies depending on how good/bad the user did in Section A
+    if totalCoins == 0:
+        print("Hmm, are you typing in random things?")
+        playsound("Audio/kiddingRight0.mp3")
+    elif totalCoins >= 1 and totalCoins <= 4:
+        print("Nice try, you'll do better next time!")
+        playsound("Audio/huh1-4.mp3")
+    elif totalCoins >= 5 and totalCoins <= 8:
+        print("Keep up the good effort and keep trying!")
+        playsound("Audio/singingLaughing5-8.mp3")
+    elif totalCoins >= 9 and totalCoins <= 12:
+        print("Keep up the great work, you read the book very well!")
+        playsound("Audio/winShow9-12.mp3")
+    elif totalCoins >= 13 and totalCoins <= 16:
+        print("Excellent job, you really impressed me!")
+        playsound("Audio/applause13-16.mp3")
+
+    # Coin summaries (Total + Hints + Boosters + Coins Remaining)
     time.sleep(3)
-    print("Total Earned Coins: " + str(totalCoins) + " coins.")
-    print("Total Hints Used: " + str(hintUse) + " hints.")
+    print("\n\033[1mTotal Earned Coins: " + str(totalCoins) + " coins.\n\033[0m")
+    print("\033[1mTotal Hints Used: " + str(hintUse) + " hints.\033[0m")
     totalBoosters = 0
     for booster in boosterList:
         totalBoosters += booster
-    print("Total Boosters Used: " + str(totalBoosters) + " boosters.")
+    print("\033[1mTotal Boosters Used: " + str(totalBoosters) + " boosters.\033[0m")
     print("    * Hint Perk: Level " + str(boosterList[0]) + "/3")
     print("    * Time Perk: Level " + str(boosterList[1]) + "/5")
     print("    * Streak Perk: Level " + str(boosterList[2]) + "/5")
-    print("\nCoins Remaining: " + str(coins) + " coins\n")
+    print("\033[1m\nCoins Remaining: " + str(coins) + " coins\n\033[0m")
 
     # Time summaries (Total + Section A + Section B + Section C)
     time.sleep(3)
     print("")
-    print("Total Elapsed Time: " + str(gameElapsed))
+    print("\033[1mTotal Elapsed Time: " + str(gameElapsed) + "\033[0m")
     print("Section A Elapsed Time: " + str(sectionAElapsed))
     print("Section B Elapsed Time: " + str(sectionBElapsed))
     print("Section C Elapsed Time: " + str(sectionCElapsed))
@@ -706,26 +756,37 @@ def gameFinish():
 
 # Game summaries (coins, hints)
     time.sleep(3)
-    print("\n\nSection B Answers: \n")
+    print("\033[1m\033[4m\nSection B Short Answers: \n\033[0m")
     for question in range(len(questionsB)):
-        print(questionsB[question])
+        print("\033[1m" + questionsB[question] + "\033[0m")
         print(answersB[question] + "\n")
         time.sleep(0.3)
     time.sleep(3)
-    print("\nSection C Answers: \n")
+    print("\033[1m\033[4m\nSection C Vocab Answers: \n\033[0m")
     for question in range(len(questionsC)):
-        print(questionsC[question])
+        print("\033[1m" + questionsC[question] + "\033[0m")
         print(answersC[question] + "\n")
         time.sleep(0.3)
     time.sleep(3)
 
-    print("I hope you've enjoyed my game!")
-    print(f"Make sure to share your score of {totalHeight} with your friends to challenge them to beat it!") 
+    print("\033[1mI hope you enjoyed my game!")
+    print(f"Make sure to share your performance score of \033[4m{totalHeight}\033[24m with your friends to challenge them to beat it!\033[0m") 
 
+# Core Game Functions (THE GAME FUNCTIONS ARE HERE)
+gameStart = time.time()
+welcomeScreen()
+sectionAInfo()
+sectionAStart = time.time()
+sectionA()
+sectionAEnd = time.time()
+totalCoins = coins
+sectionBInfo()
+sectionBStart = time.time()
+sectionB()
+sectionBEnd = time.time()
+sectionCInfo()
+sectionCStart = time.time()
+sectionC()
+sectionCEnd = time.time()
+gameEnd = time.time()
 gameFinish()
-
-# make the animation to end it off, add in instructions to watch out for their spelling, performance score
-
-# make sure to add audio folder on github
-
-# improvements: stablization of perks, better names (no pain no gain + buff time perk), better fomratting, clearer instructions, add difficultues (more/less coins, deducting coins when answer is wrong), github, leaderboard
