@@ -726,4 +726,6 @@ gameFinish()
 
 # make the animation to end it off, add in instructions to watch out for their spelling, performance score
 
-# improvements: stablization of perks, better names (no pain no gain + buff time perk), better fomratting, clearer instructions, add difficultues (more/less coins, deducting coins when answer is wrong)
+# make sure to add audio folder on github
+
+# improvements: stablization of perks, better names (no pain no gain + buff time perk), better fomratting, clearer instructions, add difficultues (more/less coins, deducting coins when answer is wrong), github, leaderboard
