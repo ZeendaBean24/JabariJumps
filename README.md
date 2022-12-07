@@ -1,25 +1,21 @@
 # JabariJumps
-Unit 1 Summative - Y9 Coding - Zeen Liu
+## Unit 1 Summative - Y9 Coding - Zeen Liu
 
-```asdasdasd```
+### System Requirements & Prerequisites
 
-- iuhuih
+> A keyboard is required.
+> A mouse is not needed.
 
-## asdasd
+> Played in Full-Screen Terminal
+> - Dark mode Terminal is highly recommended. 
+> - Terminal > Preferences > Scroll down and double click on 'Pro' to open new Terminal profile.
 
-### asdasd
+### Dependencies
+- Install ```Pip Package Manager```
+  - [Pip Documentation Official Page](https://pypi.org/project/pip/)
+  - Open Terminal -> Type ```pip install pip```
+  
+- Install ```playsound``` module.
+  - [Playsound Documentation Official Page](https://pypi.org/project/playsound/)
+  - Open Terminal -> Type ```pip install playsound```
 
-## Introduction
-
-The Administration Menu module displays the entire administrative menu tree
-(and most local tasks) in a drop-down menu, providing administrators one- or
-two-click access to most pages.  Other modules may also add menu links to the
-menu using hook_admin_menu_output_alter().
-
-- For a full description of the module, visit the
-  [project page](https://www.drupal.org/project/admin_menu).
-- Submit bug reports and feature suggestions, or track changes in the
-  [issue queue](https://www.drupal.org/project/issues/admin_menu).
-
-put requisites packages, modules, 
-Prerequisites - Only keyboard is needed, mouse is optional, played in IDLE.
