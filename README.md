@@ -8,7 +8,7 @@
 
 > Played in Full-Screen Terminal
 > - Dark mode is highly recommended. 
-> - Terminal > Preferences > Scroll down and double click on 'Pro' to open new Terminal profile.
+> - Terminal > Preferences > Scroll down and double click on 'Pro' to open a new Dark Mode Terminal profile.
 
 ### Dependencies
 - Install ```Pip Package Manager```
