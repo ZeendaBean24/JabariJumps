@@ -7,7 +7,7 @@
 > A mouse is not needed.
 
 > Played in Full-Screen Terminal
-> - Dark mode Terminal is highly recommended. 
+> - Dark mode is highly recommended. 
 > - Terminal > Preferences > Scroll down and double click on 'Pro' to open new Terminal profile.
 
 ### Dependencies
