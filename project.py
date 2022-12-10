@@ -3,13 +3,13 @@ import time
 import math
 import random
 from playsound import playsound 
-import sys
 # I was going to use the sys module to resize the terminal, but I will just add in the README.md to play in fullscreen mode
 #import sys
 #sys.stdout.write("\x1b[8;{rows};{cols}t".format(rows=200, cols=350))
 
-# Function to "Type" out the string, so that it doesn't print the string out at once, but sort of 
-def type(string):
+import sys
+# Function to "type" out the string, so that it doesn't print the string out at once, but sort of prints and flushes out a letter at once
+def typeString(string):
     for char in string:
         time.sleep(0.02)
         sys.stdout.write(char)
@@ -42,7 +42,7 @@ def welcomeScreen():
 
     time.sleep(1) # Wait 1 seconds
     # Barrier to split in between different print commands to make it look more organized and simple
-    type ("\033[31m\n| ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ |\n")
+    typeString ("\033[31m\n| ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ |\n")
     print("\033[0m")
     time.sleep(1)  # Wait 1 seconds
 
@@ -62,7 +62,7 @@ def welcomeScreen():
     """)
 
     time.sleep(1) # Wait 1 seconds
-    type ("\033[31m\n| ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ |\n")
+    typeString ("\033[31m\n| ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ |\n")
     print("\033[0m") 
     time.sleep(1) # Wait 1 seconds
 
@@ -106,26 +106,27 @@ def transitionScreen():
 # Game Instructions & Information about Section A
 def sectionAInfo(): 
     global section
-    type("\033[1mWelcome to Jabari Jumps Text-Based Game! \033[0m\nThis game will fun and engaging while testing your knowledge on Jabari Jumps!")
-    type("\n\033[2m\nBy: Zeen Liu.\n\033[0m")
+    typeString("\033[1mWelcome to Jabari Jumps Text-Based Game! \033[0m\nThis game will fun and engaging while testing your knowledge on Jabari Jumps!")
+    typeString("\n\033[2m\nBy: Zeen Liu.\n\033[0m")
     time.sleep(3)
-    type("\n\033[1mInstructions:\033[0m")
-    type("\n\n    * Prerequisites - Found in 'README.md', Make sure you've read it!")
-    type("\n    * Section A - Basic Comprehension.")
-    type("\n    * Section B - Reflective Questions.")
-    type("\n    * Section C - Vocabulary Review.")
-    type("\n    * This game is designed to be under 20 minutes of total playtime.")
-    type("\n    * There will be multiple choice + short answer questions. ")
-    type("\n    * There are wait times during the code, so don't type in anything before it tells you that you can.")
-    type("\n    * If you enter something before the wait time is over, you risk crashing the game. ")
-    type("\n    * Also, accurate is spelling is important. Sometimes if you miss a letter in a word, the filter will count it as incorrect.")
+    typeString("\n\033[1mInstructions:\033[0m")
+    typeString("\n\n    * Prerequisites - Found in 'README.md', Make sure you've read it!")
+    typeString("\n    * Section A - Basic Comprehension.")
+    typeString("\n    * Section B - Reflective Questions.")
+    typeString("\n    * Section C - Vocabulary Review.")
+    typeString("\n    * This game is designed to be under 20 minutes of total playtime.")
+    typeString("\n    * There will be multiple choice + short answer questions. ")
+    typeString("\n    * There are wait times during the code, so DO NOT TYPE in anything before it tells you that you can.")
+    typeString("\n    * If you enter something before the wait time is over, you risk crashing the game. ")
+    typeString("\n    * Also, accurate is spelling is important. Sometimes if you miss a letter in a word, the filter will count it as incorrect.")
     time.sleep(10)
-    type("\n\nSection A will only be Multiple-Choice questions.")
-    type("\nIt is your only chance to earn coins and spend it on hints & boosters later, so make sure to think about the questions carefully!")
+    typeString("\n\nSection A will only be Multiple-Choice questions.")
+    typeString("\nIt is your only chance to earn coins and spend it on hints & boosters later, so make sure to think about the questions carefully!")
+    typeString("\nOnly type the corresponding letter for the multiple choice.")
     time.sleep(4)
-    type("\033[1m\n\nReward System: \033[0m") 
-    type("\n\n    * 1 coin for each first-try correct answer.")
-    type("\n    * No coins deducted for wrong answer.")
+    typeString("\033[1m\n\nReward System: \033[0m") 
+    typeString("\n\n    * 1 coin for each first-try correct answer.")
+    typeString("\n    * No coins deducted for wrong answer.")
     time.sleep(4) 
     section = "A"
     startConfirmation()
@@ -134,16 +135,16 @@ def sectionAInfo():
 def startConfirmation():
     gameStart = False
     while gameStart == False:
-        type("\033[1m\n\nType in 'ok' when you've read through all the instructions.\n\033[0m")
+        typeString("\033[1m\n\nType in 'ok' when you've read through all the instructions.\n\033[0m")
         start = input("\n")
         if start.lower() == "ok":
-            type("\033[2m\nAlright, let's proceed to Section " + section + ".\n\n\033[0m")
+            typeString("\033[2m\nAlright, let's proceed to Section " + section + ".\n\n\033[0m")
             gameStart = True
             time.sleep(2)
             transitionScreen()
             time.sleep(1)
         else:
-            type("\nNot ready? You got this! Try again.\n")
+            typeString("\nNot ready? You got this! Try again.\n")
             time.sleep(1)
 
 # Section A Data Set
@@ -194,7 +195,7 @@ def sectionA():
     global coins
     coins = 0
     time.sleep(1)
-    type ("\033[31m\n| ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ |\n")
+    typeString ("\033[31m\n| ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ |\n")
     print("\033[0m")
     time.sleep(1)
     for question in range(len(dataA["questions"])):
@@ -216,6 +217,10 @@ def sectionA():
                     else:
                         coins += 0
                     playsound(random.choice(correctSound)) # Plays random correct sound ... etc
+                else:
+                    print("Please try again.")
+                    playsound(random.choice(incorrectSound)) # Plays random incorrect sound ... etc
+                    firstTry = False  
             elif type(dataA["answer"][question]) is list: # Checks if the answer is right
                 if userAnswer.lower() in dataA["answer"][question]:
                     print("Congrats! This is the right answer. ")
@@ -235,21 +240,21 @@ def sectionA():
 # Information about Section B
 def sectionBInfo():
     global section
-    type("\033[1mNow, we will be moving onto Section B.\n\033[0m")
+    typeString("\033[1mNow, we will be moving onto Section B.\n\033[0m")
     time.sleep(2)
-    type("\n    * This section will ask you harder, open-ended and reflective questions.")
-    type("\n    * As well, you will be introduced to a new concept - United Nations Sustainability Development Goals (UN SDGs).")
-    type("\n    * Essentially, they are goals in order to improve the world that we live in!")
-    type("\n    * Don't worry if you feel challenged! This section is designed for you to learh abstract concepts about the UN SDGs.")
-    type("\n    * We will go step-by-step through the process together.")
+    typeString("\n    * This section will ask you harder, open-ended and reflective questions.")
+    typeString("\n    * As well, you will be introduced to a new concept - United Nations Sustainability Development Goals (UN SDGs).")
+    typeString("\n    * Essentially, they are goals in order to improve the world that we live in!")
+    typeString("\n    * Don't worry if you feel challenged! This section is designed for you to learh abstract concepts about the UN SDGs.")
+    typeString("\n    * We will go step-by-step through the process together.")
     time.sleep(8)
-    type("\n\nSection B will have a combination of Multiple-Choice questions as well as Open-Ended questions.")
-    type("\nMake sure to pay special attention to all the terms that are introduced, as Section C will test you later on them! ")
+    typeString("\n\nSection B will have a combination of Multiple-Choice questions as well as Open-Ended questions.")
+    typeString("\nMake sure to pay special attention to all the terms that are introduced, as Section C will test you later on them! ")
     time.sleep(4)
     section = "B"
     startConfirmation()
 
-# Section B Data Set: Questions, Answers, Correct Answer, Question Type
+# Section B Data Set: Questions, Answers, Correct Answer, Question type
 dataB = {
     "questions": [
         "As you read through the story, you probably noticed that even though Jabari seemed to be excited at first to dive, when it was actually his turn, he seemed very nervous.",
@@ -308,7 +313,7 @@ def sectionB():
     questionsB = []
     answersB = []
     time.sleep(1)
-    type ("\033[31m\n| ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ |\n")
+    typeString ("\033[31m\n| ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ |\n")
     print("\033[0m")
     time.sleep(1)
     for question in range(len(dataB["questions"])):
@@ -356,37 +361,37 @@ def sectionB():
 # Information about Section C
 def sectionCInfo():
     global section
-    type("\033[1m\nNow, we will be moving onto Section C.\n\033[0m")
+    typeString("\033[1m\nNow, we will be moving onto Section C.\n\033[0m")
     time.sleep(2)
-    type("\n    * This section will be a vocabulary test to see what you've learned today!")
-    type("\n    * You will have to write a correct meaning in your own words for each of words in the randomized list.")
+    typeString("\n    * This section will be a vocabulary test to see what you've learned today!")
+    typeString("\n    * You will have to write a correct meaning in your own words for each of words in the randomized list.")
     time.sleep(4)
-    type("\033[1m\n\nOn each question can use your hard-earned coins to spend it on hints.\n\033[0m")
-    type("\n    * 3 coins = 1 hint.")
-    type("\n    * If you wish to use a hint for a word, simply type 'hint' in the answer prompt.\n")
+    typeString("\033[1m\n\nOn each question can use your hard-earned coins to spend it on hints.\n\033[0m")
+    typeString("\n    * 3 coins = 1 hint.")
+    typeString("\n    * If you wish to use a hint for a word, simply type 'hint' in the answer prompt.\n")
     time.sleep(4)
-    type("\nAfter you enter your answer, a system checks whether you have written the important keywords.")
-    type("\nThe more keywords that match in your answer, the higher you climb on the ladder.")
-    type("\nWhen writing your answer, DO NOT use commas, because it will break the filter.")
+    typeString("\nAfter you enter your answer, a system checks whether you have written the important keywords.")
+    typeString("\nThe more keywords that match in your answer, the higher you climb on the ladder.")
+    typeString("\nWhen writing your answer, DO NOT use commas, because it will break the filter.")
     time.sleep(4)
-    type("\n            \033[1m\n   * The height is also affected by perks that you can buy with coins each turn.\033[0m\n")
+    typeString("\n            \033[1m\n   * The height is also affected by perks that you can buy with coins each turn.\033[0m\n")
     time.sleep(2)
-    type("\n        \033[1m* Hint Perk:\033[0m")
-    type("\n            * Cost - 1")
-    type("\n            * Max Level - 3")
-    type("\n            * Description - It costs less to purchase a hint and they deduct less height.")
+    typeString("\n        \033[1m* Hint Perk:\033[0m")
+    typeString("\n            * Cost - 1")
+    typeString("\n            * Max Level - 3")
+    typeString("\n            * Description - It costs less to purchase a hint and they deduct less height.")
     time.sleep(2)
-    type("\033[1m\n\n        * Time Perk:\033[0m")
-    type("\n            * Cost - 2")
-    type("\n            * Max Level - 5")
-    type("\n            * Description - Streaks of correct keywords give more height.")
+    typeString("\033[1m\n\n        * Time Perk:\033[0m")
+    typeString("\n            * Cost - 2")
+    typeString("\n            * Max Level - 5")
+    typeString("\n            * Description - Streaks of correct keywords give more height.")
     time.sleep(2)
-    type("\033[1m\n\n        * Streak Perk:\033[0m")
-    type("\n            * Cost - 2")
-    type("\n            * Max Level - 5")
-    type("\n            * Description - Longer time to answer a question deducts less height.")
+    typeString("\033[1m\n\n        * Streak Perk:\033[0m")
+    typeString("\n            * Cost - 2")
+    typeString("\n            * Max Level - 5")
+    typeString("\n            * Description - Longer time to answer a question deducts less height.")
     time.sleep(2)
-    type("\033[1m\n\nIn the end, the total height that you have climbed will influence your performance score.\033[0m")
+    typeString("\033[1m\n\nIn the end, the total height that you have climbed will influence your performance score.\033[0m")
     time.sleep(4)
     section = "C"
     startConfirmation()
@@ -414,7 +419,7 @@ dataC = {
         "Hint: Think of how our city is developing, as we sophisticate our technology and modern society."    
     ],
     "keywords":[
-        ["better", "change", "changing", "overcome", "overcame", "growing", "grow", "dedication", "challenge", "challenges", "fear", "fears", "time", "effort"],
+        ["better", "change", "changing", "overcome", "overcame", "dedication", "challenge", "challenges", "fear", "fears", "time", "effort"],
         ["swimming", "pool", "pools", "library", "libraries", "road", "roads", "improve", "improving", "city", "cities", "structure", "example", "foundation"],
         ["first", "time", "fear", "inner", "scary", "relief", "relieving", "defeat", "overcome", "defeating", "overcoming"],
         ["scary", "scared", "scares", "panic", "terror", "danger", "panicking", "experience"],
@@ -441,14 +446,14 @@ def sectionC():
     originalList = [1, 2, 3, 4, 5, 6, 7, 8]
     randomList = []
     time.sleep(1)
-    type ("\033[31m\n| ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ |\n")
+    typeString ("\033[31m\n| ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ |\n")
     print("\033[0m")
     time.sleep(1)
 
     for rep in range(len(originalList)): # Randomizes the vocab word order so that it is unique every time
-        randomNumber = random.choice(originalList)
-        originalList.remove(randomNumber)
-        randomList.append(randomNumber)
+        randomNumber = random.choice(originalList) # List randomizer
+        originalList.remove(randomNumber) # Original list
+        randomList.append(randomNumber) # New random list
 
     questionNumber = 0
     for vocab in randomList:
@@ -623,7 +628,9 @@ def sectionC():
         questionsC.append(str(questionNumber) + ". What is " + dataC["words"][vocab-1] + "?")
         time.sleep(2)
     
-    type ("\033[31m\n| ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ |\n")
+    multiplierList = [1, 1.05, 1.1, 1.15, 1.2]
+    totalHeight = int(totalHeight*(random.choice(multiplierList)))
+    typeString ("\033[31m\n| ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ - ~ |\n")
     print("\033[0m")
     time.sleep(1)
 
@@ -655,25 +662,23 @@ def timeConvert(sec): # Converts seconds into a properly formatted clock [x mins
         elapsedTime = str(mins) + " minutes " + str(sec) + " seconds "
         return elapsedTime
 
-def gameFinish(): # Conclusion & Summary of Text-Based Game
+def gameFinish(): # Conclusion & Summary of Text-Based Game      
 
     # Ending dialogue game, as you jump down the ladder
-    type("\nYou look down.")
+    typeString("\nYou look down.")
     time.sleep(2)
-    type("\n\n...")
+    typeString("\n\n...")
     time.sleep(2)
-    type("\n\nWow! You have come a long way up the ladder.")
+    typeString("\n\nWow! You have come a long way up the ladder.")
     time.sleep(4)
-    type("\033[1m\n\nYou get ready to take another dive off the board.")
+    typeString("\033[1m\n\nYou get ready to take another dive off the board.")
     time.sleep(2)
-    type("\n\n...")
+    typeString("\n\n...")
     time.sleep(2)
-    type("\n\n...")
+    typeString("\n\n...")
     time.sleep(2)
-    type("\n\nSSSSSSSSPLAAAAAAASHHHHH!\033[0m")
+    typeString("\n\nSSSSSSSSPLAAAAAAASHHHHH!\033[0m")
     playsound(random.choice(splashSound))
-    multiplierList = [1, 1.05, 1.1, 1.15, 1.2]
-    totalHeight = int(totalHeight*(random.choice(multiplierList)))
 
     time.sleep(3)
     transitionScreen()
@@ -685,9 +690,15 @@ def gameFinish(): # Conclusion & Summary of Text-Based Game
 ╚═╝└─┘┘└┘└─┘┴└─┴ ┴ ┴ └─┘┴─┘┴ ┴ ┴ ┴└─┘┘└┘└─┘o\033[0m
 """)
     
-    time.sleep(3)
+    # Gives the score of Section A out of 16 & in percentage
+    percentage = int(totalCoins/16*100)
+    print("\033[1m\nYour Comprehension Score ......")
+    playsound("Audio/drumroll1.mp3") # Drumroll
+    print("Section A: \033[0m" + str(totalCoins) + "/16 -- " + str(percentage) + "%!")
+    print(f"\033[1m\033[4m\nYour Final Performance Score: {totalHeight}!\n\033[0m")
+    playsound("Audio/drumroll2.mp3")
 
-    print(f"\033[1m\033[4mYour Final Performance Score: {totalHeight}!\n\033[0m")
+    time.sleep(3)
 
     # Time Calculation of Individual Sections
     gameElapsed = gameEnd - gameStart
@@ -707,13 +718,6 @@ def gameFinish(): # Conclusion & Summary of Text-Based Game
     sectionCElapsed = timeConvert(sectionCElapsed)
 
     time.sleep(3)
-
-    # Gives the score of Section A out of 16 & in percentage
-    percentage = int(totalCoins/16*100)
-    print("\033[1m\nYour Comprehension Score ......")
-    playsound("Audio/drumroll1.mp3") # Drumroll
-    print("Section A: \033[0m" + str(totalCoins) + "/16 -- " + str(percentage) + "%!")
-    playsound("Audio/drumroll2.mp3")
 
     # Sends a congrats message for the user finishing the game, and the tone/sound effect varies depending on how good/bad the user did in Section A
     if totalCoins == 0:
@@ -735,7 +739,7 @@ def gameFinish(): # Conclusion & Summary of Text-Based Game
     # Coin summaries (Total + Hints + Boosters + Coins Remaining)
     time.sleep(3)
     print("\n\033[1mTotal Earned Coins: " + str(totalCoins) + " coins.\n\033[0m")
-    print("\033[1mTotal Hints Used: " + str(hintUse) + " hints.\033[0m")
+    print("\033[1mTotal Hints Used: " + str(hintUse) + " hints.\n\033[0m")
     totalBoosters = 0
     for booster in boosterList:
         totalBoosters += booster
@@ -754,7 +758,7 @@ def gameFinish(): # Conclusion & Summary of Text-Based Game
     print("Section C Elapsed Time: " + str(sectionCElapsed))
     print("")
 
-# Game summaries (coins, hints)
+# Game summaries (questions + answers)
     time.sleep(3)
     print("\033[1m\033[4m\nSection B Short Answers: \n\033[0m")
     for question in range(len(questionsB)):
@@ -790,3 +794,56 @@ sectionC()
 sectionCEnd = time.time()
 gameEnd = time.time()
 gameFinish()
+
+class textColors: # Reference Point for Bold, Dim & Colours
+    ResetAll = "\033[0m"
+
+    Bold       = "\033[1m"
+    Dim        = "\033[2m"
+    Underlined = "\033[4m"
+    Blink      = "\033[5m"
+    Reverse    = "\033[7m"
+    Hidden     = "\033[8m"
+
+    ResetBold       = "\033[21m"
+    ResetDim        = "\033[22m"
+    ResetUnderlined = "\033[24m"
+    ResetBlink      = "\033[25m"
+    ResetReverse    = "\033[27m"
+    ResetHidden     = "\033[28m"
+
+    Default      = "\033[39m"
+    Black        = "\033[30m"
+    Red          = "\033[31m"
+    Green        = "\033[32m"
+    Yellow       = "\033[33m"
+    Blue         = "\033[34m"
+    Magenta      = "\033[35m"
+    Cyan         = "\033[36m"
+    LightGray    = "\033[37m"
+    DarkGray     = "\033[90m"
+    LightRed     = "\033[91m"
+    LightGreen   = "\033[92m"
+    LightYellow  = "\033[93m"
+    LightBlue    = "\033[94m"
+    LightMagenta = "\033[95m"
+    LightCyan    = "\033[96m"
+    White        = "\033[97m"
+
+    BackgroundDefault      = "\033[49m"
+    BackgroundBlack        = "\033[40m"
+    BackgroundRed          = "\033[41m"
+    BackgroundGreen        = "\033[42m"
+    BackgroundYellow       = "\033[43m"
+    BackgroundBlue         = "\033[44m"
+    BackgroundMagenta      = "\033[45m"
+    BackgroundCyan         = "\033[46m"
+    BackgroundLightGray    = "\033[47m"
+    BackgroundDarkGray     = "\033[100m"
+    BackgroundLightRed     = "\033[101m"
+    BackgroundLightGreen   = "\033[102m"
+    BackgroundLightYellow  = "\033[103m"
+    BackgroundLightBlue    = "\033[104m"
+    BackgroundLightMagenta = "\033[105m"
+    BackgroundLightCyan    = "\033[106m"
+    BackgroundWhite        = "\033[107m"
