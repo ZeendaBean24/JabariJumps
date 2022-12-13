@@ -180,7 +180,7 @@ dataA = {
         ["A. He is too excited.", "B. He is too tired.", "C. He is too nervous."],
         ["A. His sister.", "B. His dad.", "C. Nobody."],
         ["A. He forgot to stretch.", "B. He forgot to wear his goggles."],
-        ["A. Think about the worst that could happen.", "B. Do nothing and hope for the beast.", "C. Take a deep breath and tell himself that he is ready."],
+        ["A. Think about the worst that could happen.", "B. Do nothing and hope for the best.", "C. Take a deep breath and tell himself that he is ready."],
         ["A. Yes, he listens to his dad's advice and feels ready.", "B. No, he decides to dive on another day."],
         ["A. He realized that he is a good diver and isn't scared anymore.", "B. He thought the dive would be a surprise, and he loved surprises."],
         ["A. Jabari is relieved and loved the surprise.", "B. Jabari is happy that he managed to dive.", "C. Jabari is already excited to dive again."]
@@ -384,12 +384,12 @@ def sectionCInfo():
     typeString("\033[1m\n\n        * Time Perk:\033[0m")
     typeString("\n            * Cost - 2")
     typeString("\n            * Max Level - 5")
-    typeString("\n            * Description - Streaks of correct keywords give more height.")
+    typeString("\n            * Description - Longer time to answer a question deducts less height.")
     time.sleep(2)
     typeString("\033[1m\n\n        * Streak Perk:\033[0m")
     typeString("\n            * Cost - 2")
     typeString("\n            * Max Level - 5")
-    typeString("\n            * Description - Longer time to answer a question deducts less height.")
+    typeString("\n            * Description - Streaks of correct keywords give more height.")
     time.sleep(2)
     typeString("\033[1m\n\nIn the end, the total height that you have climbed will influence your performance score.\033[0m")
     time.sleep(4)
@@ -519,7 +519,7 @@ def sectionC():
         timeStart = time.time()
 
         # Asks the user for their answer to the vocabulary question
-        answer = input("\033[1m\n" + str(questionNumber) + ". What is " + dataC["words"][vocab-1] + ": \n\n\033[0m\033[1mYour answer: \033[0m")
+        answer = input("\033[1m\n" + str(questionNumber) + ". What is " + dataC["words"][vocab-1] + ": \n\n\033[0m\033[1mYour answer (type in 'hint' if you are stuck): \033[0m")
         if answer.lower() == 'hint': # Checks if the user wants to purchase a hint
             if coins-hintCost < 0: # Checks if the user has enough coins
                 print("\nNot enough coins!\n")
